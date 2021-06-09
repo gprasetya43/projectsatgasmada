@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "204696039953",
+    "project_id": "satgasmada",
+    "storage_bucket": "satgasmada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204696039953:android:60cf45d46e946477f237b0",
+        "android_client_info": {
+          "package_name": "com.app.satgasmada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204696039953-abtnn2g0r3u6757ibl28adt4pft11mgj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.satgasmada",
+            "certificate_hash": "03474461913089eda1310e75eee6947959c1780e"
+          }
+        },
+        {
+          "client_id": "204696039953-0lk5du3tfohohljbvpuhj8676deeo69t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsCOCB7UHu7dQYeLfc-VDZj138kZWKo3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204696039953-0lk5du3tfohohljbvpuhj8676deeo69t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

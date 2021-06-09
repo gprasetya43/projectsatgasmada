@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name" translatable="false">Satgasmada</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Bottom Navigation
+    <string name="home">Home</string>
+    <string name="notification">Notification</string>
+    <string name="profile">Profile</string>
+
+    //Home Fragment
+    <string name="report_name">Report Name</string>
+    <string name="report_description">Description</string>
+    <string name="report_date" translatable="false">DD MM YYYY HH:MM:SS</string>
+    <string name="sender_name">Sent By : Sender Name</string>
+
+    //Notification Fragment
+    <string name="notification_name">Notification Name</string>
+    <string name="notification_description">Description</string>
+    <string name="notification_date" translatable="false">DD MM YYYY HH:MM:SS</string>
+
+    //Profile Fragment
+    <string name="user_displayName">Name</string>
+    <string name="full_name">Full Name</string>
+    <string name="user_full_name">User\'s Full Name</string>
+    <string name="account_code">Account Code</string>
+    <string name="user_account_code">User\'s Account Code</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="user_phone_number">User\'s Phone Number</string>
+    <string name="address">Address</string>
+    <string name="user_address">User\'s Address</string>
+    <string name="change_language">Change Language</string>
+    <string name="sign_out">Sign Out</string>
+
+    //Add Report Fragment
+    <string name="add_report">Add New Report</string>
+    <string name="new_report_name">Report Name</string>
+    <string name="input_report_name">Input Report Name</string>
+    <string name="new_report_description">Report Description</string>
+    <string name="input_report_description">Input Report Description</string>
+    <string name="new_report_btn">Add Report</string>
+    <string name="password">password</string>
+    <string name="email">Email</string>
+
+</resources>

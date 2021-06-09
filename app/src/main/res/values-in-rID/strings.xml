@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_blank_fragment">Fragment Kosong</string>
+
+    //Bottom Navigation
+    <string name="home">Beranda</string>
+    <string name="notification">Pemberitahuan</string>
+    <string name="profile">Profil</string>
+
+    //Home Fragment
+    <string name="report_name">Nama Laporan</string>
+    <string name="report_description">Deskripsi</string>
+    <string name="sender_name">Dikirim Oleh : Nama Pengirim</string>
+
+    //Notification Fragment
+    <string name="notification_name">Nama Pemberitahuan</string>
+    <string name="notification_description">Deskripsi</string>
+
+    //Profile Fragment
+    <string name="user_displayName">Nama</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="user_full_name">Nama Lengkap Pengguna</string>
+    <string name="account_code">Kode Akun</string>
+    <string name="user_account_code">Kode Akun Pengguna</string>
+    <string name="phone_number">Nomor Telepon</string>
+    <string name="user_phone_number">Nomor Telepon Pengguna</string>
+    <string name="address">Alamat</string>
+    <string name="user_address">Alamat Pengguna</string>
+    <string name="change_language">Ubah Bahasa</string>
+    <string name="sign_out">Keluar</string>
+
+    //Add Report Fragment
+    <string name="add_report">Buat Laporan Baru</string>
+    <string name="new_report_name">Nama Laporan</string>
+    <string name="input_report_name">Masukkan Nama Laporan</string>
+    <string name="new_report_description">Deskripsi</string>
+    <string name="input_report_description">Masukkan Deskripsi</string>
+    <string name="new_report_btn">Tambah Laporan</string>
+</resources>
