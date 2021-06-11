@@ -20,7 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText mEmail, mPass;
+    EditText mEmail;
+    EditText mPass;
     private Button signInBtn;
     private FirebaseAuth mAuth;
     @Override
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEmail =findViewById(R.id.username);
+        mEmail =findViewById(R.id.username_login);
         mPass =findViewById(R.id.password_login);
         signInBtn=findViewById(R.id.btn_login);
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "Login Failed !!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }else{
