@@ -34,7 +34,6 @@
             android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10sp"
-            android:text="@string/user_displayName"
             android:textColor="@color/colorWhite"
             android:textSize="24sp"
             android:textStyle="bold"/>
@@ -68,10 +67,11 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/username2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@string/user_full_name"
+
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -97,10 +97,11 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/akun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@string/user_account_code"
+
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -125,10 +126,10 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/Location_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@string/user_address"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
                     android:textStyle="bold" />

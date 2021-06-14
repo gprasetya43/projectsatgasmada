@@ -21,11 +21,11 @@
     <string name="user_displayName">Nama</string>
     <string name="full_name">Nama Lengkap</string>
     <string name="user_full_name">Nama Lengkap Pengguna</string>
-    <string name="account_code">Kode Akun</string>
+    <string name="account_code">Akun</string>
     <string name="user_account_code">Kode Akun Pengguna</string>
     <string name="phone_number">Nomor Telepon</string>
     <string name="user_phone_number">Nomor Telepon Pengguna</string>
-    <string name="address">Alamat</string>
+    <string name="address">Lokasi</string>
     <string name="user_address">Alamat Pengguna</string>
     <string name="change_language">Ubah Bahasa</string>
     <string name="sign_out">Keluar</string>

@@ -4,17 +4,33 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 
 public class ProfileFragment extends Fragment {
@@ -22,7 +38,14 @@ public class ProfileFragment extends Fragment {
     View viewProfile;
     private Button mButton;
     private Button logout;
-
+    private FirebaseFirestore db;
+    private String name;
+    private String email;
+    private Map<String,Object> usersdata;
+    private FirebaseAuth mAuth;
+    TextView username_;
+    TextView username_2;
+    TextView makun;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -37,6 +60,9 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         loadLocale();
 
+        db = FirebaseFirestore.getInstance();
+        getdata();
+
 
     }
 
@@ -45,6 +71,18 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewProfile = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        username_=(TextView) viewProfile.findViewById(R.id.username);
+
+        username_2=(TextView) viewProfile.findViewById(R.id.username2);
+        makun=(TextView) viewProfile.findViewById(R.id.akun) ;
+
+        logout= (Button) viewProfile.findViewById(R.id.logoutBtn);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLogout();
+            }
+        });
 
         mButton = (Button) viewProfile.findViewById(R.id.changeLanguageBtn);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -103,5 +141,30 @@ public class ProfileFragment extends Fragment {
         setLocale(language);
     }
 
+    private void getdata() {
 
+        DocumentReference docRef = db.collection("users").document("4nmxIXXnoMTxZwDV7e3rkupa4ok2");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        usersdata =document.getData();
+
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData().getClass().getSimpleName());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public void getLogout() {
+        FirebaseAuth.getInstance().signOut();
+
+    }
 }

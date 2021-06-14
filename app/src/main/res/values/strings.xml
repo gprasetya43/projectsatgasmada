@@ -24,11 +24,11 @@
     <string name="user_displayName">Name</string>
     <string name="full_name">Full Name</string>
     <string name="user_full_name">User\'s Full Name</string>
-    <string name="account_code">Account Code</string>
+    <string name="account_code">Account </string>
     <string name="user_account_code">User\'s Account Code</string>
     <string name="phone_number">Phone Number</string>
     <string name="user_phone_number">User\'s Phone Number</string>
-    <string name="address">Address</string>
+    <string name="address">Location</string>
     <string name="user_address">User\'s Address</string>
     <string name="change_language">Change Language</string>
     <string name="sign_out">Sign Out</string>
