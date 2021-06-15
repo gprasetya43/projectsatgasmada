@@ -43,7 +43,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportHold
         holder.tv_desc.setText(mData.get(position).getDesc());
         holder.tv_date.setText(mData.get(position).getDate());
         holder.tv_sender.setText(mData.get(position).getSender());
-        holder.img.setImageResource(mData.get(position).getImg());
+//        holder.img.setImageResource(mData.get(position).getImg());
         /**
         holder.mTitle.setText(ReportModel.getTitle());
         holder.mDesc.setText(ReportModel.getDesc());

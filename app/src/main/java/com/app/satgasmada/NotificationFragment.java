@@ -1,13 +1,24 @@
 package com.app.satgasmada;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +28,7 @@ public class NotificationFragment extends Fragment {
     View viewNotif;
     private RecyclerView nRecyclerView;
     private List<com.app.satgasmada.NotifModel> listNotif;
+    private FirebaseFirestore db;
 
 
     public NotificationFragment() {
@@ -32,10 +44,6 @@ public class NotificationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        listNotif = new ArrayList<>();
-        listNotif.add(new com.app.satgasmada.NotifModel("Announcement 1","Meet at gathering point","March 15 2021  13:23:10",R.drawable.ic_round_new_releases_24));
-        listNotif.add(new com.app.satgasmada.NotifModel("Announcement 2","Meet at GSP","March 24 2021  23:59:10",R.drawable.ic_round_new_releases_24));
-        listNotif.add(new com.app.satgasmada.NotifModel("Announcement 3","Meet at Wisdom Park","March 28 2021  10:23:20",R.drawable.ic_round_new_releases_24));
     }
 
     @Override
@@ -44,10 +52,44 @@ public class NotificationFragment extends Fragment {
         viewNotif = inflater.inflate(R.layout.fragment_notification, container, false);
         nRecyclerView = (RecyclerView) viewNotif.findViewById(R.id.recyclerViewNotif);
 
-        com.app.satgasmada.NotifAdapter notifAdapter = new com.app.satgasmada.NotifAdapter(getContext(),listNotif);
-        nRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        nRecyclerView.setAdapter(notifAdapter);
+//        com.app.satgasmada.NotifAdapter notifAdapter = new com.app.satgasmada.NotifAdapter(getContext(), listNotif);
+//        nRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        nRecyclerView.setAdapter(notifAdapter);
+        db = FirebaseFirestore.getInstance();
+        getdata();
 
         return viewNotif;
     }
+
+    private void getdata() {
+        CollectionReference docRef = db.collection("announcements");
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<String> list = new ArrayList<>();
+                    List<NotifModel> listNotif = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        list.add(document.getId());
+                        String title = document.getString("title");
+//                        String createdAt =  document.getString("createdAt").toString();
+                        String content = document.getString("content");
+                        NotifModel notifModel = new NotifModel(title, content,"dsf",0);
+                        listNotif.add(notifModel);
+                    }
+                    Log.d("listNotif", listNotif.toString());
+                    NotifAdapter notifAdapter = new com.app.satgasmada.NotifAdapter(getContext(), listNotif);
+                    nRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    nRecyclerView.setAdapter(notifAdapter);
+                } else {
+                    Log.d("Test", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+    }
+
+
 }

@@ -37,7 +37,7 @@ public class NotifAdapter extends RecyclerView.Adapter<NotifAdapter.NotifHolder>
         holder.tv_titleN.setText(nData.get(position).getTitleNotif());
         holder.tv_descN.setText(nData.get(position).getDescNotif());
         holder.tv_dateN.setText(nData.get(position).getDateNotif());
-        holder.imgN.setImageResource(nData.get(position).getImgNotif());
+//        holder.imgN.setImageResource(nData.get(position).getImgNotif());
     }
 
     @Override

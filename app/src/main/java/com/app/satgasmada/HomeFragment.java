@@ -1,19 +1,31 @@
  package com.app.satgasmada;
 
  import android.os.Bundle;
- import android.view.LayoutInflater;
- import android.view.View;
- import android.view.ViewGroup;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
- import androidx.fragment.app.Fragment;
- import androidx.fragment.app.FragmentTransaction;
- import androidx.recyclerview.widget.LinearLayoutManager;
- import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
- import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
- import java.util.ArrayList;
- import java.util.List;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
  public class HomeFragment extends Fragment {
 
@@ -21,6 +33,7 @@
      private FloatingActionButton mActionButton;
      private RecyclerView mRecyclerView;
      private List<com.app.satgasmada.ReportModel> listReport;
+     private FirebaseFirestore database = FirebaseFirestore.getInstance();
 
 
      public HomeFragment() {
@@ -36,11 +49,6 @@
      public void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
 
-         listReport = new ArrayList<>();
-
-         listReport.add(new com.app.satgasmada.ReportModel("Report 1","Danger", "March 15 2021  13:23:10", "Sent By : John",R.drawable.ic_round_description_24));
-         listReport.add(new com.app.satgasmada.ReportModel("Report 2","Danger", "March 18 2021  15:23:20", "Sent By : John",R.drawable.ic_round_description_24));
-         listReport.add(new com.app.satgasmada.ReportModel("Report 3","Safe", "March 24 2021  23:29:10", "Sent By : John",R.drawable.ic_round_description_24));
 
 
      }
@@ -63,10 +71,57 @@
              }
          });
 
-         com.app.satgasmada.ReportAdapter reportAdapter = new com.app.satgasmada.ReportAdapter(getContext(),listReport);
-         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-         mRecyclerView.setAdapter(reportAdapter);
+        getdata();
 
          return viewReport;
      }
+
+     private void getdata() {
+         CollectionReference docRef = database.collection("reports");
+
+         docRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+             @Override
+             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                 if (task.isSuccessful()) {
+                     List<String> list = new ArrayList<>();
+                     List<ReportModel> listNotif = new ArrayList<>();
+
+                     for (QueryDocumentSnapshot document : task.getResult()) {
+                         list.add(document.getId());
+                         String title = document.getString("title");
+                         Timestamp createdAt = document.getTimestamp("createdAt");
+                         String content = document.getString("description");
+//                         List<String> image =  (List<String>) document.get("images");
+                         DocumentReference docRef = document.getDocumentReference("userId");
+
+
+                         Report report = new Report(
+                                 docRef,
+                                 null,
+                                 content,
+                                 null,
+                                 "",
+                                 "",
+                                 title
+                                );
+
+                         ReportModel reportModel = new ReportModel(title,content, String.valueOf(createdAt), "asd", 0);
+                         listNotif.add(reportModel);
+                         Log.d("listNotif", listNotif.toString());
+                         ReportAdapter notifAdapter = new ReportAdapter(getContext(), listNotif);
+                         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                         mRecyclerView.setAdapter(notifAdapter);
+                     }
+
+                 } else {
+                     Log.d("Test", "Error getting documents: ", task.getException());
+                 }
+             }
+         });
+
+     }
+
+
+
+
  }
