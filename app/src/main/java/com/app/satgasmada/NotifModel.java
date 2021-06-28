@@ -1,13 +1,15 @@
 package com.app.satgasmada;
 
+import com.google.firebase.Timestamp;
+
 public class NotifModel {
 
     private String TitleNotif;
     private String DescNotif;
-    private String DateNotif;
+    private Timestamp DateNotif;
     private int imgNotif;
 
-    public NotifModel(String titleNotif, String descNotif, String dateNotif, int imgNotif) {
+    public NotifModel(String titleNotif, String descNotif, Timestamp dateNotif, int imgNotif) {
         TitleNotif = titleNotif;
         DescNotif = descNotif;
         DateNotif = dateNotif;
@@ -30,11 +32,11 @@ public class NotifModel {
         DescNotif = descNotif;
     }
 
-    public String getDateNotif() {
+    public Timestamp getDateNotif() {
         return DateNotif;
     }
 
-    public void setDateNotif(String dateNotif) {
+    public void setDateNotif(Timestamp dateNotif) {
         DateNotif = dateNotif;
     }
 

@@ -1,14 +1,16 @@
 package com.app.satgasmada;
 
+import com.google.firebase.Timestamp;
+
 public class ReportModel {
 
     private String Title;
     private String Desc;
-    private String Date;
+    private Timestamp Date;
     private String Sender;
     private int Img;
 
-    public ReportModel(String title,String desc, String date, String sender, int img){
+    public ReportModel(String title,String desc, Timestamp date, String sender, int img){
         Title = title;
         Desc = desc;
         Date = date;
@@ -32,11 +34,11 @@ public class ReportModel {
         Desc = desc;
     }
 
-    public String getDate() {
+    public Timestamp getDate() {
         return Date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Timestamp date) {
         Date = date;
     }
 

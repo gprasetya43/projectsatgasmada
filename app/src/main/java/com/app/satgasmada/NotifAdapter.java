@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class NotifAdapter extends RecyclerView.Adapter<NotifAdapter.NotifHolder> {
 
@@ -34,9 +37,12 @@ public class NotifAdapter extends RecyclerView.Adapter<NotifAdapter.NotifHolder>
 
     @Override
     public void onBindViewHolder(@NonNull NotifHolder holder, int position) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        String date = dateFormat.format(nData.get(position).getDateNotif().toDate());
+
         holder.tv_titleN.setText(nData.get(position).getTitleNotif());
         holder.tv_descN.setText(nData.get(position).getDescNotif());
-        holder.tv_dateN.setText(nData.get(position).getDateNotif());
+        holder.tv_dateN.setText(date);
 //        holder.imgN.setImageResource(nData.get(position).getImgNotif());
     }
 

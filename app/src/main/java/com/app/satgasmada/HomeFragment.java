@@ -1,31 +1,31 @@
  package com.app.satgasmada;
 
  import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+ import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+ import androidx.annotation.NonNull;
+ import androidx.fragment.app.Fragment;
+ import androidx.fragment.app.FragmentTransaction;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+ import com.google.android.gms.tasks.OnCompleteListener;
+ import com.google.android.gms.tasks.Task;
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
+ import com.google.firebase.Timestamp;
+ import com.google.firebase.firestore.CollectionReference;
+ import com.google.firebase.firestore.DocumentReference;
+ import com.google.firebase.firestore.FirebaseFirestore;
+ import com.google.firebase.firestore.QueryDocumentSnapshot;
+ import com.google.firebase.firestore.QuerySnapshot;
 
-import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+ import java.util.ArrayList;
+ import java.util.List;
 
  public class HomeFragment extends Fragment {
 
@@ -105,7 +105,8 @@ import java.util.List;
                                  title
                                 );
 
-                         ReportModel reportModel = new ReportModel(title,content, String.valueOf(createdAt), "asd", 0);
+                         ReportModel reportModel = new ReportModel(title,content, createdAt, "SendBy:User", 0);
+//                                 String.valueOf(createdAt)
                          listNotif.add(reportModel);
                          Log.d("listNotif", listNotif.toString());
                          ReportAdapter notifAdapter = new ReportAdapter(getContext(), listNotif);

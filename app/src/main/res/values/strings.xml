@@ -42,5 +42,7 @@
     <string name="new_report_btn">Add Report</string>
     <string name="password">password</string>
     <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="login">login</string>
 
 </resources>

@@ -1,21 +1,25 @@
 package com.app.satgasmada;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import static com.app.satgasmada.MyFirebaseMessagingService.sendRegistrationToServer;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,10 +28,13 @@ public class MainActivity extends AppCompatActivity {
     EditText mPass;
     private Button signInBtn;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore database = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getFCMToken();
 
         mEmail =findViewById(R.id.username_login);
         mPass =findViewById(R.id.password_login);
@@ -53,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
+
+
+
+
                                 Toast.makeText(MainActivity.this, "Login Successfully !!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(MainActivity.this , Dashboard.class));
                                 finish();
@@ -72,5 +83,19 @@ public class MainActivity extends AppCompatActivity {
             mEmail.setError("Pleas Enter Correct Email");
         }
     }
+
+    // Buat dapetin token dan simpan
+    private void getFCMToken() {
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                String token = task.getResult();
+                sendRegistrationToServer(token);
+            } else {
+                Log.w("MainActivity", "Fetching FCM registration token failed", task.getException());
+            }
+        });
+    }
+
+
 
 }

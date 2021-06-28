@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -74,9 +75,9 @@ public class NotificationFragment extends Fragment {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         list.add(document.getId());
                         String title = document.getString("title");
-//                        String createdAt =  document.getString("createdAt").toString();
+                        Timestamp createdAt =  document.getTimestamp("createdAt");
                         String content = document.getString("content");
-                        NotifModel notifModel = new NotifModel(title, content,"dsf",0);
+                        NotifModel notifModel = new NotifModel(title, content,createdAt,0);
                         listNotif.add(notifModel);
                     }
                     Log.d("listNotif", listNotif.toString());

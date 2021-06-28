@@ -1,8 +1,8 @@
 package com.app.satgasmada;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Report {

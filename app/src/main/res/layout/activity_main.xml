@@ -14,7 +14,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="100dp"
         android:layout_marginRight="100dp"
-        app:srcCompat="@drawable/ic_baseline_account_circle_24"
+        app:srcCompat="@drawable/logo"
         tools:ignore="VectorDrawableCompat" />
 
     <RelativeLayout
@@ -60,14 +60,17 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="220dp"
-        android:layout_height="59dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="450dp"
         android:layout_marginRight="100dp"
-        android:background="@color/colorSecondary"
-        android:text="login"
-        app:backgroundTint="@color/colorSecondary" />
+        android:background="@drawable/button_login"
+        android:text="@string/login"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
 
 
