@@ -126,7 +126,7 @@ public class ReportAddFragment extends Fragment {
         NotificationCompat.Builder builder = new  NotificationCompat.Builder(getActivity(), CHANNEL_ID)
                 .setContentTitle("Satgasmada")
                 .setContentText("Success Add Report")
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSmallIcon(R.drawable.logofix)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
 

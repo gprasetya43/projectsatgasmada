@@ -32,15 +32,16 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        showNotification(remoteMessage);
+        if (remoteMessage.getNotification() !=null){
+            showNotification(remoteMessage.getNotification());}
     }
 
-    private void showNotification(RemoteMessage remoteMessage) {
+    private void showNotification(RemoteMessage.Notification remoteMessage) {
         String channelId = "channel_new_notification";
         String channelName = "New notification";
 
-        String title = remoteMessage.getData().get("title");
-        String message = remoteMessage.getData().get("message");
+        String title = remoteMessage.getTitle();
+        String message = remoteMessage.getBody();
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -51,7 +52,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.logo_launcher)
+                .setSmallIcon(R.drawable.logofix)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(message))

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getFCMToken();
+        getsubcribe();
 
         mEmail =findViewById(R.id.username_login);
         mPass =findViewById(R.id.password_login);
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void loginUser(){
         String email = mEmail.getText().toString();
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Buat dapetin token dan simpan
     private void getFCMToken() {
+
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 String token = task.getResult();
@@ -94,7 +98,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.w("MainActivity", "Fetching FCM registration token failed", task.getException());
             }
         });
+
     }
+    private void getsubcribe() {
+        FirebaseMessaging.getInstance().subscribeToTopic("SATGASMADANOTIF").addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
 
 
