@@ -1,6 +1,7 @@
 package com.app.satgasmada;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +44,18 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportHold
 
     @Override
     public void onBindViewHolder(@NonNull ReportHolder holder, int position) {
+        FirebaseFirestore.getInstance().collection("users").document(mData.get(position)
+                .getSenderId()).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d("ReportAdapter", "onSuccess");
+                        if (task.getResult() != null) {
+                            holder.tv_sender.setText(task.getResult().getString("name"));
+                        }
+                    } else {
+                        Log.e("ReportAdapter", "onFailure", task.getException());
+                    }
+        });
+
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         String date = dateFormat.format(mData.get(position).getDate().toDate());
 
@@ -48,7 +63,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportHold
         holder.tv_desc.setText(mData.get(position).getDesc());
 //        holder.tv_date.setText(mData.get(position).getDate());
         holder.tv_date.setText(date);
-        holder.tv_sender.setText(mData.get(position).getSender());
+
 //        holder.img.setImageResource(mData.get(position).getImg());
         /**
         holder.mTitle.setText(ReportModel.getTitle());

@@ -13,11 +13,12 @@ public class Report {
     String latitude;
     String longitude;
     String title;
+    String senderId;
 
     public Report() {
     }
 
-    public Report(DocumentReference id, Timestamp createdAt, String description, ArrayList<String> images, String latitude, String longitude, String title) {
+    public Report(DocumentReference id, Timestamp createdAt, String description, ArrayList<String> images, String latitude, String longitude, String title, String senderId) {
         this.id = id;
         this.createdAt = createdAt;
         this.description = description;
@@ -25,6 +26,7 @@ public class Report {
         this.latitude = latitude;
         this.longitude = longitude;
         this.title = title;
+        this.senderId = senderId;
     }
 
     public DocumentReference getId() {
@@ -83,6 +85,10 @@ public class Report {
         this.title = title;
     }
 
+    public String getSenderId() {
+        return senderId;
+    }
+
     @Override
     public String toString() {
         return "Report{" +
@@ -93,6 +99,12 @@ public class Report {
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 ", title='" + title + '\'' +
+                ", senderId='" + senderId + '\'' +
                 '}';
     }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
 }

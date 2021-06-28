@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -68,7 +69,7 @@ public class ReportAddFragment extends Fragment {
         changeLanguageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DocumentReference docRef = database.collection("users").document("4nmxIXXnoMTxZwDV7e3rkupa4ok2");
+                DocumentReference docRef = database.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 ArrayList<String> images = new ArrayList<>();
                 images.add("list1");
                 images.add("list2");
@@ -79,8 +80,8 @@ public class ReportAddFragment extends Fragment {
                         images,
                         "0.0",
                         "0.0",
-                        edtTitle.getText().toString()
-
+                        edtTitle.getText().toString(),
+                        FirebaseAuth.getInstance().getCurrentUser().getUid()
                 );
 
         insert( testReport);
@@ -150,6 +151,7 @@ public class ReportAddFragment extends Fragment {
         document.put("longitude", profile.getLongitude());
         document.put("title", profile.getTitle());
         document.put("userId", profile.getId());
+        document.put("senderId", profile.getSenderId());
         return document;
     }
 }

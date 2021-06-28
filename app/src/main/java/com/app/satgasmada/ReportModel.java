@@ -9,13 +9,15 @@ public class ReportModel {
     private Timestamp Date;
     private String Sender;
     private int Img;
+    private String SenderId;
 
-    public ReportModel(String title,String desc, Timestamp date, String sender, int img){
+    public ReportModel(String title, String desc, Timestamp date, String sender, int img, String senderId) {
         Title = title;
         Desc = desc;
         Date = date;
         Sender = sender;
         Img = img;
+        SenderId = senderId;
     }
 
     public String getTitle() {
@@ -56,5 +58,13 @@ public class ReportModel {
 
     public void setImg(int img) {
         Img = img;
+    }
+
+    public String getSenderId() {
+        return SenderId;
+    }
+
+    public void setSenderId(String senderId) {
+        SenderId = senderId;
     }
 }

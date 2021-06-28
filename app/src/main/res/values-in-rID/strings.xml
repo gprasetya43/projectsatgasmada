@@ -5,7 +5,7 @@
 
     //Bottom Navigation
     <string name="home">Beranda</string>
-    <string name="notification">Pemberitahuan</string>
+    <string name="notification">Pengumuman</string>
     <string name="profile">Profil</string>
 
     //Home Fragment

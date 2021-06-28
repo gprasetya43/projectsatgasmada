@@ -6,7 +6,7 @@
 
     //Bottom Navigation
     <string name="home">Home</string>
-    <string name="notification">Notification</string>
+    <string name="notification">Announcement</string>
     <string name="profile">Profile</string>
 
     //Home Fragment

@@ -91,6 +91,7 @@
                          String title = document.getString("title");
                          Timestamp createdAt = document.getTimestamp("createdAt");
                          String content = document.getString("description");
+                         String senderId = document.getString("senderId");
 //                         List<String> image =  (List<String>) document.get("images");
                          DocumentReference docRef = document.getDocumentReference("userId");
 
@@ -102,10 +103,11 @@
                                  null,
                                  "",
                                  "",
-                                 title
+                                 title,
+                                 senderId
                                 );
 
-                         ReportModel reportModel = new ReportModel(title,content, createdAt, "SendBy:User", 0);
+                         ReportModel reportModel = new ReportModel(title,content, createdAt, docRef.toString(), 0, senderId);
 //                                 String.valueOf(createdAt)
                          listNotif.add(reportModel);
                          Log.d("listNotif", listNotif.toString());
